@@ -1,5 +1,5 @@
 # Ex.No:04   FIT ARMA MODEL FOR TIME SERIES
-# Date: 
+# Date:
 
 
 
@@ -23,25 +23,67 @@ axis limits.
 6. Display the autocorrelation and partial autocorrelation plots for the ARMA(2,2) process using
 plot_acf and plot_pacf.
 ### PROGRAM:
+~~~
+from pandas import read_csv
+from pandas import datetime
+from matplotlib import pyplot
+from pandas.plotting import autocorrelation_plot
+from pandas import DataFrame
+from statsmodels.tsa.arima_model import ARIMA
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from statsmodels.tsa.arima_process import ArmaProcess
+import matplotlib.pyplot as plt
+import numpy as np
+import warnings
+warnings.filterwarnings('ignore')
+import matplotlib.pyplot as plt
+import numpy as np
 
-OUTPUT:
-SIMULATED ARMA(1,1) PROCESS:
+plt.rcParams['figure.figsize'] = [10, 7.5]
+
+ar1 = np.array([1,0.33])
+ma1 = np.array([1,0.9])
+ARMA_1 = ArmaProcess(ar1,ma1).generate_sample(nsample = 1000)
+plt.plot(ARMA_1)
+plt.title('Simulated ARMA(1,1) Process')
+plt.xlim([0, 200])
+plt.show()
+plot_acf(ARMA_1)
+plot_pacf(ARMA_1)
+ar2 = np.array([1, 0.33, 0.5])
+ma2 = np.array([1, 0.9, 0.3])
+ARMA_2 = ArmaProcess(ar2, ma2).generate_sample(nsample=10000)
+plt.plot(ARMA_2)
+plt.title('Simulated ARMA(2,2) Process')
+plt.xlim([0, 200])
+plt.show()
+plot_acf(ARMA_2)
+plot_pacf(ARMA_2)
+~~~
+### OUTPUT:
+#### SIMULATED ARMA(1,1) PROCESS:
+![image](https://github.com/RanjithD18/TSA_EXP4/assets/93427221/26d4d3db-1967-44ba-ad31-2c145903fe2d)
 
 
 
-Partial Autocorrelation
+#### Partial Autocorrelation
+![image](https://github.com/RanjithD18/TSA_EXP4/assets/93427221/ad6b932a-58cf-495f-bbec-5de11dba3865)
 
-Autocorrelation
-
-
-
-SIMULATED ARMA(2,2) PROCESS:
-
-Partial Autocorrelation
+#### Autocorrelation
+![image](https://github.com/RanjithD18/TSA_EXP4/assets/93427221/13761f59-de9c-48bc-b79e-9d064178b441)
 
 
 
-Autocorrelation
+#### SIMULATED ARMA(2,2) PROCESS:
+![image](https://github.com/RanjithD18/TSA_EXP4/assets/93427221/334098e4-1ec3-4746-bc42-8599916d32e4)
 
-RESULT:
+#### Partial Autocorrelation
+![image](https://github.com/RanjithD18/TSA_EXP4/assets/93427221/89e85df5-c24f-4ccb-bd76-b946a2522352)
+
+
+
+#### Autocorrelation
+![image](https://github.com/RanjithD18/TSA_EXP4/assets/93427221/22b547d0-18b0-42ea-933a-a9765ee3ec65)
+
+### RESULT:
 Thus, a python program is created to fir ARMA Model successfully.
